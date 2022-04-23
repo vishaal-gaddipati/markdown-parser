@@ -10,6 +10,10 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
+            if (markdown.indexOf("!", currentIndex) > 0) {
+                break;
+            }
+            
             int openBracket = markdown.indexOf("[", currentIndex);
 
             if (openBracket == -1) {
@@ -17,6 +21,11 @@ public class MarkdownParse {
             }
 
             int closeBracket = markdown.indexOf("]", openBracket);
+
+            if (closeBracket == -1) {
+                break;
+            }
+
             int openParen = markdown.indexOf("(", closeBracket);
 
             if (openParen == -1) { // fix for file 2 and 4
@@ -24,6 +33,11 @@ public class MarkdownParse {
             }
 
             int closeParen = markdown.indexOf(")", openParen);
+
+            if (closeParen == -1) {
+                break;
+            }
+
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
