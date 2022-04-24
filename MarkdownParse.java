@@ -1,3 +1,5 @@
+//https://howtodoinjava.com/java/io/java-read-file-to-string-examples/
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,34 +12,10 @@ public class MarkdownParse {
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
         while(currentIndex < markdown.length()) {
-            if (markdown.indexOf("!", currentIndex) > 0) {
-                break;
-            }
-            
             int openBracket = markdown.indexOf("[", currentIndex);
-
-            if (openBracket == -1) {
-                break; // fix for file 3
-            }
-
             int closeBracket = markdown.indexOf("]", openBracket);
-
-            if (closeBracket == -1) {
-                break;
-            }
-
             int openParen = markdown.indexOf("(", closeBracket);
-
-            if (openParen == -1) { // fix for file 2 and 4
-                break;
-            }
-
             int closeParen = markdown.indexOf(")", openParen);
-
-            if (closeParen == -1) {
-                break;
-            }
-
             toReturn.add(markdown.substring(openParen + 1, closeParen));
             currentIndex = closeParen + 1;
         }
