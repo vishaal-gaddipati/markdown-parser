@@ -8,6 +8,8 @@ import java.util.ArrayList;
 public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
+        //test edit
+
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
         int currentIndex = 0;
