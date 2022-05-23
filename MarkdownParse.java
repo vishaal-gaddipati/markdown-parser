@@ -9,6 +9,7 @@ public class MarkdownParse {
 
     public static ArrayList<String> getLinks(String markdown) {
         //test edit
+        //markdown.replaceAll("\n", "");
 
         ArrayList<String> toReturn = new ArrayList<>();
         // find the next [, then find the ], then find the (, then read link upto next )
